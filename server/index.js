@@ -30,6 +30,14 @@ app.post('/api/memo/saveMemo', (req, res) => {
     })
 });
 
+app.post('/api/memo/removeMemo', (req, res) => {
+    Memo.findOneAndDelete({ memoId: req.body.memoId })
+    .exec((err, result) => {
+      if(err) return res.status(400).send(err);
+      return res.status(200).json({ success: true, result });
+    })
+})
+
 app.post('/api/memo/getMemo', (req, res) => {
     Memo.find({})
     .exec((err, memos) => {

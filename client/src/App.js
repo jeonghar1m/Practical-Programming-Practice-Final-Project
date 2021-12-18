@@ -1,8 +1,8 @@
 import React from 'react';
 // import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import LandingPage from './Component/LandingPage';
-import MemoList from './Component/MemoList';
+import LandingPage from './Component/LandingPage/LandingPage';
+import MemoList from './Component/MemoList/MemoList';
 
 function App() {
   return (
