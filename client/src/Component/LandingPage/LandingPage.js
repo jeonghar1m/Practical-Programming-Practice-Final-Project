@@ -3,10 +3,6 @@ import axios from 'axios';
 
 function LandingPage() {
     const [MemoValue, setMemoValue] = useState("");
-
-    // useEffect(() => {
-    //     console.log(MemoValue)
-    // }, [MemoValue])
     
     const handleClick = (event) => setMemoValue(event.currentTarget.value);
 

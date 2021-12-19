@@ -38,6 +38,14 @@ app.post('/api/memo/removeMemo', (req, res) => {
     })
 })
 
+app.post('/api/memo/modifyMemo', (req, res) => {
+    Memo.findOneAndUpdate({ memoId: req.body.memoId }, { $set: { content: req.body.content } })
+    .exec((err, result) => {
+        if(err) return res.status(400).send(err);
+        return  res.status(200).json({ success: true, result });
+    })
+})
+
 app.post('/api/memo/getMemo', (req, res) => {
     Memo.find({})
     .exec((err, memos) => {
