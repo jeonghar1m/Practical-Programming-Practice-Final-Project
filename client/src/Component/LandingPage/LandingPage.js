@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 function LandingPage() {
@@ -7,18 +7,22 @@ function LandingPage() {
     const handleClick = (event) => setMemoValue(event.currentTarget.value);
 
     const onSubmit = (event) => {
-        event.preventDefault();
-
-        const variables = {
-            memoId: new Date().getTime(),
-            content: MemoValue
+        if(MemoValue !== "") {
+            event.preventDefault();
+    
+            const variables = {
+                memoId: new Date().getTime(),
+                content: MemoValue
+            }
+    
+            axios.post('/api/memo/saveMemo', variables)
+                .then(res => {
+                    if(res.data.success)    setMemoValue("");
+                    else    alert('메모를 저장하지 못했습니다.');
+                })
+        } else {
+            alert('메모를 입력해주세요.');
         }
-
-        axios.post('/api/memo/saveMemo', variables)
-            .then(res => {
-                if(res.data.success)    setMemoValue("");
-                else    alert('메모를 저장하지 못했습니다.');
-            })
     }
     return (
         <div>
